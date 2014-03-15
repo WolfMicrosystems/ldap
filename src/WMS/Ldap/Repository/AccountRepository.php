@@ -20,8 +20,7 @@ class AccountRepository extends AbstractRepository
 {
     /**
      * @param \WMS\Ldap\Entity\GroupNode $groupNode
-     * @throws LdapException
-     * @return Collection\GroupNodeCollection
+     * @return Collection\AccountNodeCollection
      */
     public function findAccountsForGroup(Entity\GroupNode $groupNode)
     {
@@ -31,7 +30,7 @@ class AccountRepository extends AbstractRepository
             return $this->findAccountsForGroupUsingAccountAttribute($groupNode);
         }
 
-        throw new LdapException('Cannot resolve group members, no resolving strategy available');
+        return new Collection\AccountNodeCollection(new Collection\DnIterator($this->connection, array()));
     }
 
     /**

@@ -66,7 +66,6 @@ class GroupRepository extends AbstractRepository
     /**
      * @param Entity\AccountNode $account
      * @return Collection\GroupNodeCollection
-     * @throws \Zend\Ldap\Exception\LdapException
      */
     public function findGroupsForAccount(Entity\AccountNode $account)
     {
@@ -76,7 +75,7 @@ class GroupRepository extends AbstractRepository
             return $this->findGroupsForAccountUsingGroupAttribute($account);
         }
 
-        throw new LdapException('Cannot resolve groups, no resolving strategy available');
+        return new Collection\GroupNodeCollection(new Collection\DnIterator($this->connection, array()));
     }
 
     /**
