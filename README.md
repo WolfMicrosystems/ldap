@@ -1,4 +1,6 @@
 Ldap
 ====
 
-Ldap Library for PHP (requires PECL LDAP)
+Simple LDAP abstraction layer
+
+(Documentation is WIP)
