@@ -134,4 +134,13 @@ class GroupRepository extends AbstractRepository
             )
         );
     }
+
+    protected function getSearchAttributes()
+    {
+        return array(
+            'dn',
+            $this->getConfiguration()->getGroupNameAttribute(),
+            $this->getConfiguration()->getGroupDescriptionAttribute(),
+        );
+    }
 }

@@ -47,6 +47,7 @@ abstract class AbstractRepository
 
     /**
      * @param \WMS\Ldap\Connection $connection
+     *
      * @throws \WMS\Ldap\Exception\InvalidArgumentException
      */
     public function setConnection(Connection $connection)
@@ -60,6 +61,7 @@ abstract class AbstractRepository
 
     /**
      * @param Filter\AbstractFilter $descriminator
+     *
      * @return Filter\AbstractFilter
      */
     protected function buildFilter(Filter\AbstractFilter $descriminator = null)
@@ -113,13 +115,15 @@ abstract class AbstractRepository
 
     /**
      * @param Filter\AbstractFilter $filter
+     * @param array|null            $attributes
      * @param int                   $searchScope
      * @param int                   $maxFilterTime
+     *
      * @return mixed
      */
-    protected function searchForOneNode(Filter\AbstractFilter $filter, $searchScope = Connection::SEARCH_SCOPE_SUB, $maxFilterTime = 0)
+    protected function searchForOneNode(Filter\AbstractFilter $filter, $attributes = null, $searchScope = Connection::SEARCH_SCOPE_SUB, $maxFilterTime = 0)
     {
-        $results = $this->searchNodes($filter, $searchScope, 1, $maxFilterTime);
+        $results = $this->searchNodes($filter, $attributes, $searchScope, 1, $maxFilterTime);
 
         if ($results->count() === 0) {
             return null;
@@ -130,22 +134,33 @@ abstract class AbstractRepository
 
     /**
      * @param Filter\AbstractFilter $filter
+     * @param array|null            $attributes
      * @param int                   $searchScope
      * @param int                   $maxResults
      * @param int                   $maxFilterTime
+     *
      * @return DisconnectedZendLdapNodeCollection
      */
-    protected function searchNodes(Filter\AbstractFilter $filter, $searchScope = Connection::SEARCH_SCOPE_SUB, $maxResults = 0, $maxFilterTime = 0)
+    protected function searchNodes(Filter\AbstractFilter $filter, $attributes = null, $searchScope = Connection::SEARCH_SCOPE_SUB, $maxResults = 0, $maxFilterTime = 0)
     {
+        if ($attributes === null) {
+            $attributes = $this->getSearchAttributes();
+        }
+
         return $this->connection->search(
             $filter,
             $this->getSearchBaseDn(),
             $searchScope,
-            array(),
+            $attributes,
             null,
             $this->getNodeCollectionClass(),
             $maxResults,
             $maxFilterTime
         );
+    }
+
+    protected function getSearchAttributes()
+    {
+        return array();
     }
 } 

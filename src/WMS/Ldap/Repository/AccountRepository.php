@@ -20,6 +20,7 @@ class AccountRepository extends AbstractRepository
 {
     /**
      * @param \WMS\Ldap\Entity\GroupNode $groupNode
+     *
      * @return Collection\AccountNodeCollection
      */
     public function findAccountsForGroup(Entity\GroupNode $groupNode)
@@ -68,6 +69,7 @@ class AccountRepository extends AbstractRepository
 
     /**
      * @param $accountName
+     *
      * @return Entity\AccountNode|null
      */
     public function findByAccountName($accountName)
@@ -83,6 +85,7 @@ class AccountRepository extends AbstractRepository
 
     /**
      * @param Entity\GroupNode $group
+     *
      * @return Collection\AccountNodeCollection
      */
     protected function findAccountsForGroupUsingAccountAttribute(Entity\GroupNode $group)
@@ -104,6 +107,7 @@ class AccountRepository extends AbstractRepository
 
     /**
      * @param Entity\GroupNode $group
+     *
      * @return Collection\AccountNodeCollection
      */
     protected function findAccountsForGroupUsingGroupAttribute(Entity\GroupNode $group)
@@ -134,6 +138,20 @@ class AccountRepository extends AbstractRepository
             $this->buildFilter(
                 new Filter\OrFilter($filters)
             )
+        );
+    }
+
+    protected function getSearchAttributes()
+    {
+        return array(
+            'dn',
+            $this->getConfiguration()->getAccountUsernameAttribute(),
+            $this->getConfiguration()->getAccountUniqueIdAttribute(),
+            $this->getConfiguration()->getAccountDisplayNameAttribute(),
+            $this->getConfiguration()->getAccountFirstNameAttribute(),
+            $this->getConfiguration()->getAccountLastNameAttribute(),
+            $this->getConfiguration()->getAccountEmailAttribute(),
+            $this->getConfiguration()->getAccountPictureAttribute(),
         );
     }
 }
