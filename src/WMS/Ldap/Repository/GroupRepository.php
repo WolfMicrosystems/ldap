@@ -139,6 +139,7 @@ class GroupRepository extends AbstractRepository
     {
         return array(
             'dn',
+            'objectClass',
             $this->getConfiguration()->getGroupNameAttribute(),
             $this->getConfiguration()->getGroupDescriptionAttribute(),
         );

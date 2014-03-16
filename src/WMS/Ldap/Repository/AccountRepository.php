@@ -145,6 +145,7 @@ class AccountRepository extends AbstractRepository
     {
         return array(
             'dn',
+            'objectClass',
             $this->getConfiguration()->getAccountUsernameAttribute(),
             $this->getConfiguration()->getAccountUniqueIdAttribute(),
             $this->getConfiguration()->getAccountDisplayNameAttribute(),
