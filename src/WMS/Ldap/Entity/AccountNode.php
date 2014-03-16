@@ -22,11 +22,8 @@ class AccountNode extends AbstractNodeEntity
     protected $email;
     /** @var string|null */
     protected $firstName;
-
     /** @var string|null */
     protected $lastName;
-    /** @var string|null */
-    protected $pictureBlob;
     /** @var mixed */
     protected $uniqueId;
     /** @var string */
@@ -48,7 +45,6 @@ class AccountNode extends AbstractNodeEntity
         $this->setLastName($node->getAttribute($config->getAccountLastNameAttribute(), 0));
         $this->setDisplayName($node->getAttribute($config->getAccountDisplayNameAttribute(), 0));
         $this->setEmail($node->getAttribute($config->getAccountEmailAttribute(), 0));
-        $this->setPictureBlob($node->getAttribute($config->getAccountPictureAttribute(), 0));
     }
 
     /**
@@ -113,22 +109,6 @@ class AccountNode extends AbstractNodeEntity
     protected function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getPictureBlob()
-    {
-        return $this->pictureBlob;
-    }
-
-    /**
-     * @param null|string $pictureBlog
-     */
-    protected function setPictureBlob($pictureBlog)
-    {
-        $this->pictureBlob = $pictureBlog;
     }
 
     /**

@@ -14,6 +14,7 @@ use WMS\Ldap\Enum as Enum;
 use WMS\Ldap\Entity as Entity;
 use Zend\Ldap\Exception\LdapException;
 use Zend\Ldap\Filter as Filter;
+use Zend\Ldap\Ldap;
 use Zend\Ldap\Node;
 
 class AccountRepository extends AbstractRepository
@@ -81,6 +82,35 @@ class AccountRepository extends AbstractRepository
                 new Filter\StringFilter($this->connection->getConfiguration()->getAccountUsernameAttribute() . '=' . Filter\AbstractFilter::escapeValue($username))
             )
         );
+    }
+
+    /**
+     * @param $accountName
+     *
+     * @return string|null
+     */
+    public function getAccountPictureBlob($accountName)
+    {
+        $username = $this->connection->getCanonicalAccountName($accountName, Enum\CanonicalAccountNameForm::USERNAME);
+
+        /** @var Collection\DisconnectedZendLdapNodeCollection $results */
+        $results = $this->connection->search(
+            $this->buildFilter(
+                new Filter\StringFilter($this->connection->getConfiguration()->getAccountUsernameAttribute() . '=' . Filter\AbstractFilter::escapeValue($username))
+            ),
+            $this->getSearchBaseDn(),
+            Ldap::SEARCH_SCOPE_SUB,
+            array($this->getConfiguration()->getAccountPictureAttribute()),
+            null,
+            '\WMS\Ldap\Collection\DisconnectedZendLdapNodeCollection',
+            1
+        );
+
+        if ($results->count() === 0) {
+            return null;
+        }
+
+        return $results->getFirst()->getAttribute($this->getConfiguration()->getAccountPictureAttribute(), 0);
     }
 
     /**
@@ -152,7 +182,6 @@ class AccountRepository extends AbstractRepository
             $this->getConfiguration()->getAccountFirstNameAttribute(),
             $this->getConfiguration()->getAccountLastNameAttribute(),
             $this->getConfiguration()->getAccountEmailAttribute(),
-            $this->getConfiguration()->getAccountPictureAttribute(),
         );
     }
 }
