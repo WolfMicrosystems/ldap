@@ -52,6 +52,7 @@ class GroupRepository extends AbstractRepository
 
     /**
      * @param $groupName
+     *
      * @return Entity\GroupNode|null
      */
     public function findByGroupName($groupName)
@@ -65,6 +66,7 @@ class GroupRepository extends AbstractRepository
 
     /**
      * @param Entity\AccountNode $account
+     *
      * @return Collection\GroupNodeCollection
      */
     public function findGroupsForAccount(Entity\AccountNode $account)
@@ -80,6 +82,7 @@ class GroupRepository extends AbstractRepository
 
     /**
      * @param Entity\AccountNode $account
+     *
      * @return Collection\GroupNodeCollection
      */
     protected function findGroupsForAccountUsingAccountAttribute(Entity\AccountNode $account)
@@ -112,6 +115,7 @@ class GroupRepository extends AbstractRepository
 
     /**
      * @param Entity\AccountNode $account
+     *
      * @return Collection\GroupNodeCollection
      */
     protected function findGroupsForAccountUsingGroupAttribute(Entity\AccountNode $account)
@@ -137,11 +141,17 @@ class GroupRepository extends AbstractRepository
 
     protected function getSearchAttributes()
     {
-        return array(
+        $attribs = array(
             'dn',
             'objectClass',
             $this->getConfiguration()->getGroupNameAttribute(),
             $this->getConfiguration()->getGroupDescriptionAttribute(),
         );
+
+        if ($this->getConfiguration()->getMembershipUseAttributeFromGroup()) {
+            $attribs[] = $this->getConfiguration()->getGroupMembersAttribute();
+        }
+
+        return $attribs;
     }
 }

@@ -173,7 +173,7 @@ class AccountRepository extends AbstractRepository
 
     protected function getSearchAttributes()
     {
-        return array(
+        $attribs = array(
             'dn',
             'objectClass',
             $this->getConfiguration()->getAccountUsernameAttribute(),
@@ -183,5 +183,11 @@ class AccountRepository extends AbstractRepository
             $this->getConfiguration()->getAccountLastNameAttribute(),
             $this->getConfiguration()->getAccountEmailAttribute(),
         );
+
+        if ($this->getConfiguration()->getMembershipUseAttributeFromUser()) {
+            $attribs[] = $this->getConfiguration()->getAccountMembershipAttribute();
+        }
+
+        return $attribs;
     }
 }

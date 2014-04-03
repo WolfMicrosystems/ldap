@@ -659,7 +659,7 @@ class Configuration
     }
 
     /**
-     * @param mixed $membershipUseAttributeFromUser
+     * @param bool $membershipUseAttributeFromUser
      */
     public function setMembershipUseAttributeFromUser($membershipUseAttributeFromUser)
     {
@@ -671,7 +671,7 @@ class Configuration
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function getMembershipUseAttributeFromUser()
     {
