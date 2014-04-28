@@ -7,9 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Entity;
+namespace WMS\Library\Ldap\Entity;
 
-use WMS\Ldap\Configuration;
+use WMS\Library\Ldap\Configuration;
 use Zend\Ldap\Dn;
 use Zend\Ldap\Node;
 

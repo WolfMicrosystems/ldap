@@ -7,11 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Repository;
+namespace WMS\Library\Ldap\Repository;
 
-use WMS\Ldap\Collection as Collection;
-use WMS\Ldap\Enum as Enum;
-use WMS\Ldap\Entity as Entity;
+use WMS\Library\Ldap\Collection as Collection;
+use WMS\Library\Ldap\Enum as Enum;
+use WMS\Library\Ldap\Entity as Entity;
 use Zend\Ldap\Exception\LdapException;
 use Zend\Ldap\Filter as Filter;
 use Zend\Ldap\Ldap;
@@ -20,7 +20,7 @@ use Zend\Ldap\Node;
 class AccountRepository extends AbstractRepository
 {
     /**
-     * @param \WMS\Ldap\Entity\GroupNode $groupNode
+     * @param \WMS\Library\Ldap\Entity\GroupNode $groupNode
      *
      * @return Collection\AccountNodeCollection
      */
@@ -52,7 +52,7 @@ class AccountRepository extends AbstractRepository
 
     protected function getNodeCollectionClass()
     {
-        return '\WMS\Ldap\Collection\AccountNodeCollection';
+        return '\WMS\Library\Ldap\Collection\AccountNodeCollection';
     }
 
     /**
@@ -102,7 +102,7 @@ class AccountRepository extends AbstractRepository
             Ldap::SEARCH_SCOPE_SUB,
             array($this->getConfiguration()->getAccountPictureAttribute()),
             null,
-            '\WMS\Ldap\Collection\DisconnectedZendLdapNodeCollection',
+            '\WMS\Library\Ldap\Collection\DisconnectedZendLdapNodeCollection',
             1
         );
 

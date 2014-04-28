@@ -7,11 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Repository;
+namespace WMS\Library\Ldap\Repository;
 
-use WMS\Ldap\Enum as Enum;
-use WMS\Ldap\Entity as Entity;
-use WMS\Ldap\Collection as Collection;
+use WMS\Library\Ldap\Enum as Enum;
+use WMS\Library\Ldap\Entity as Entity;
+use WMS\Library\Ldap\Collection as Collection;
 use Zend\Ldap\Exception\LdapException;
 use Zend\Ldap\Filter as Filter;
 
@@ -34,7 +34,7 @@ class GroupRepository extends AbstractRepository
 
     protected function getNodeCollectionClass()
     {
-        return '\WMS\Ldap\Collection\GroupNodeCollection';
+        return '\WMS\Library\Ldap\Collection\GroupNodeCollection';
     }
 
     /**

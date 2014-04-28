@@ -7,11 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Entity;
+namespace WMS\Library\Ldap\Entity;
 
-use WMS\Ldap\Exception\UnexpectedNodeException;
-use WMS\Ldap\Configuration;
-use WMS\Ldap\Helper\NodeUtil;
+use WMS\Library\Ldap\Exception\UnexpectedNodeException;
+use WMS\Library\Ldap\Configuration;
+use WMS\Library\Ldap\Helper\NodeUtil;
 use Zend\Ldap\Node;
 
 class GroupNode extends AbstractNodeEntity

@@ -7,14 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Repository;
+namespace WMS\Library\Ldap\Repository;
 
-use WMS\Ldap\Collection\DisconnectedZendLdapNodeCollection;
-use WMS\Ldap\Connection;
-use WMS\Ldap\Enum as Enum;
-use WMS\Ldap\Entity\AccountNode;
-use WMS\Ldap\Exception\InvalidArgumentException;
-use WMS\Ldap\Exception\UnexpectedNodeException;
+use WMS\Library\Ldap\Collection\DisconnectedZendLdapNodeCollection;
+use WMS\Library\Ldap\Connection;
+use WMS\Library\Ldap\Enum as Enum;
+use WMS\Library\Ldap\Entity\AccountNode;
+use WMS\Library\Ldap\Exception\InvalidArgumentException;
+use WMS\Library\Ldap\Exception\UnexpectedNodeException;
 use Zend\Ldap\Collection;
 use Zend\Ldap\Dn;
 use Zend\Ldap\Filter as Filter;
@@ -38,7 +38,7 @@ abstract class AbstractRepository
     public abstract function findAll();
 
     /**
-     * @return \WMS\Ldap\Connection
+     * @return \WMS\Library\Ldap\Connection
      */
     public function getConnection()
     {
@@ -46,14 +46,14 @@ abstract class AbstractRepository
     }
 
     /**
-     * @param \WMS\Ldap\Connection $connection
+     * @param \WMS\Library\Ldap\Connection $connection
      *
-     * @throws \WMS\Ldap\Exception\InvalidArgumentException
+     * @throws \WMS\Library\Ldap\Exception\InvalidArgumentException
      */
     public function setConnection(Connection $connection)
     {
         if ($connection === null) {
-            throw new InvalidArgumentException('$connection must be an instance of \WMS\Ldap\Connection');
+            throw new InvalidArgumentException('$connection must be an instance of \WMS\Library\Ldap\Connection');
         }
 
         $this->connection = $connection;
@@ -97,7 +97,7 @@ abstract class AbstractRepository
      */
     protected function getNodeCollectionClass()
     {
-        return '\WMS\Ldap\Collection\DisconnectedZendLdapNodeCollection';
+        return '\WMS\Library\Ldap\Collection\DisconnectedZendLdapNodeCollection';
     }
 
     /**

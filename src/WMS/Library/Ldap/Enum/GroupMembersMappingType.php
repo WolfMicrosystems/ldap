@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Enum;
+namespace WMS\Library\Ldap\Enum;
 
 /**
  * Defines the different possible mapping types between

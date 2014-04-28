@@ -7,9 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Enum;
+namespace WMS\Library\Ldap\Enum;
 
-use WMS\Ldap\Exception\InvalidEnumValueException;
+use WMS\Library\Ldap\Exception\InvalidEnumValueException;
 
 /**
  * Abstract enum class providing validation and useful methods.
@@ -49,11 +49,11 @@ abstract class AbstractEnum
 
     /**
      * Checks if the value is valid according to the enumeration
-     * and throws a {@link \WMS\Ldap\Exception\InvalidEnumValueException}
+     * and throws a {@link \WMS\Library\Ldap\Exception\InvalidEnumValueException}
      * if the value is invalid.
      *
      * @param mixed $value
-     * @throws \WMS\Ldap\Configuration\Exception\InvalidEnumValueException
+     * @throws \WMS\Library\Ldap\Configuration\Exception\InvalidEnumValueException
      */
     public static function throwExceptionIfInvalid($value)
     {

@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Helper;
+namespace WMS\Library\Ldap\Helper;
 
 use Zend\Ldap\Node;
 

@@ -1,5 +1,5 @@
 <?php
-namespace WMS\Ldap;
+namespace WMS\Library\Ldap;
 
 use Psr\Log\LoggerInterface;
 use Zend\Ldap\Ldap as BaseConnection;
@@ -28,7 +28,7 @@ class Connection extends BaseConnection
     }
 
     /**
-     * @return \WMS\Ldap\Configuration
+     * @return \WMS\Library\Ldap\Configuration
      */
     public function getConfiguration()
     {
@@ -36,7 +36,7 @@ class Connection extends BaseConnection
     }
 
     /**
-     * @param \WMS\Ldap\Configuration $config
+     * @param \WMS\Library\Ldap\Configuration $config
      *
      * @throws Exception\InvalidArgumentException
      */

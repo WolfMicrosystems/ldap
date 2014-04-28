@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WMS\Ldap;
+namespace WMS\Library\Ldap;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Zend\Ldap\Dn;

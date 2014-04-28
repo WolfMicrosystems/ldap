@@ -7,28 +7,37 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace WMS\Ldap\Collection;
+namespace WMS\Library\Ldap\Collection;
 
-use WMS\Ldap\Entity as Entity;
+use Zend\Ldap\Collection;
+use Zend\Ldap\Node;
 
-class GroupNodeCollection extends DisconnectedZendLdapNodeCollection
+class DisconnectedZendLdapNodeCollection extends Collection
 {
     /**
      * Creates the data structure for the given entry data
      *
      * @param  array $data
-     * @return Entity\GroupNode
+     * @return \Zend\Ldap\Node
      */
     protected function createEntry(array $data)
     {
-        return Entity\GroupNode::fromNode(parent::createEntry($data), $this->getConnection()->getConfiguration());
+        return Node::fromArray($data, false);
     }
 
     /**
-     * @return Entity\GroupNode
+     * @return \Zend\Ldap\Node
      */
     public function getFirst()
     {
         return parent::getFirst();
+    }
+
+    /**
+     * @return \WMS\Library\Ldap\Connection
+     */
+    protected function getConnection()
+    {
+        return $this->getInnerIterator()->getLDAP();
     }
 }
